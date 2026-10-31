@@ -1,14 +1,17 @@
-KGB ACADEMY - site à héberger sur GitHub Pages
+KGB ACADEMY - site installable (PWA) pour GitHub Pages
 
-Fichiers :
+Fichiers (9) :
 - index.html : la page du site (ne change pas ce nom)
-- favicon.png : petite icône de l'onglet
+- manifest.webmanifest : informations de l'application (nom, couleurs, icônes)
+- sw.js : permet l'installation et le fonctionnement hors connexion
+- icon-192.png, icon-512.png, icon-maskable-512.png : icônes de l'application
+- favicon.png : icône de l'onglet
 - logo-kgb-academy.png / .svg : ton logo
 
-Étapes (depuis le téléphone) :
+Mise à jour du dépôt existant (depuis le téléphone) :
 1. Extrais le zip avec l'application Fichiers ou ZArchiver.
-2. Crée un compte sur github.com et confirme ton e-mail.
-3. Crée un dépôt PUBLIC (New repository), par exemple "kgb-academy", avec "Add a README file" coché.
-4. Dans le dépôt : Add file > Upload files, choisis les 4 fichiers (index.html, favicon.png, logo-kgb-academy.png, logo-kgb-academy.svg), puis Commit changes.
-5. Settings > Pages > Source : Deploy from a branch > Branch : main, dossier /(root) > Save.
-6. Attends 1 à 2 minutes. Ton site sera sur : https://TON-PSEUDO.github.io/kgb-academy/
+2. Ouvre ton dépôt sur github.com (Chrome, "Version pour ordinateur" si besoin).
+3. Add file > Upload files : choisis TOUS les fichiers du dossier extrait.
+   Ceux qui existent déjà (index.html, favicon.png, logos) sont remplacés.
+4. Commit changes. Attends 1 à 2 minutes.
+5. Ouvre le site dans Chrome, ferme et rouvre la page : le menu ⋮ propose "Installer l'application".

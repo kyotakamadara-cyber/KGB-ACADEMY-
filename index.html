@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>KGB ACADEMY – Formations en ligne</title>
 <link rel="icon" type="image/png" href="favicon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0E7A5F">
+<link rel="apple-touch-icon" href="icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -35,6 +38,7 @@ header{display:flex;justify-content:space-between;align-items:center;padding:18p
 .lbl{display:block;font-weight:600;margin-bottom:8px}
 .inp{width:100%;font:inherit;padding:13px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);margin-bottom:14px}
 .inp:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.note{font-size:14px;color:var(--muted);margin:16px 0 0}
 .hero h1{font-size:clamp(34px,9vw,52px);font-weight:800;letter-spacing:-.02em;max-width:14ch}
 .hero p{color:var(--muted);max-width:34ch;margin:16px 0 26px;font-size:18px}
 .btn{display:inline-block;background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:16px;padding:14px 22px;border-radius:10px;text-decoration:none;border:0;cursor:pointer;font-family:var(--body)}
@@ -89,6 +93,19 @@ footer{padding:28px 0 40px;border-top:1px solid var(--line);color:var(--muted);f
     <p class="sub">Choisis ton guide, puis appuie sur « Commander ».</p>
     <div class="chips" id="chips"></div>
     <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="tutos">
+    <h2>Tutos complets</h2>
+    <p class="sub">Trading, e-commerce, IA, monétisation de comptes… Cherche un sujet ou écris celui que tu veux apprendre : je te réponds sur WhatsApp avec le prix.</p>
+    <div class="card">
+      <label for="tq" class="lbl">Quel tuto veux-tu suivre ?</label>
+      <input id="tq" class="inp" type="search" placeholder="Ex. : trading, TikTok, IA…" autocomplete="off">
+      <a class="btn" id="tsend" target="_blank" rel="noopener">Envoyer ma demande</a>
+    </div>
+    <div class="grid" id="tgrid" style="margin-top:16px"></div>
+    <p class="sub" id="tnone" hidden>Aucun tuto ne correspond. Envoie ta demande avec le bouton ci-dessus.</p>
+    <p class="note">Ces tutoriels sont éducatifs. Le trading comporte des risques de perte : aucun gain n’est garanti.</p>
   </section>
 
   <section id="applications">
@@ -161,6 +178,7 @@ function render(){
   });
 }
 render();
+if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js").catch(function(){})}
 var hi="Bonjour, j’ai une question sur vos formations.";
 document.getElementById("hello").href=wa(hi);
 document.getElementById("fab").href=wa(hi);
@@ -173,6 +191,28 @@ try{
 var ai=document.getElementById("appname"),ab=document.getElementById("appbtn");
 function upd(){var n=ai.value.trim();ab.href=wa("Bonjour, je voudrais demander une application"+(n?" : « "+n+" »":"")+". Quel est le prix ?")}
 ai.addEventListener("input",upd);upd();
+var TUTOS=[
+  {titre:"Trading",desc:"Comprendre les marchés, lire les graphiques et gérer le risque.",mots:"trading bourse forex crypto bourse"},
+  {titre:"E-commerce",desc:"Créer et lancer une boutique en ligne, puis vendre sur les réseaux.",mots:"ecommerce boutique vente dropshipping shopify"},
+  {titre:"Intelligence artificielle",desc:"Utiliser les outils d’IA pour travailler, créer du contenu et gagner du temps.",mots:"ia ai chatgpt claude outils prompt"},
+  {titre:"Monétisation de comptes (TikTok, YouTube…)",desc:"Les conditions et les étapes pour monétiser tes comptes depuis la Côte d’Ivoire.",mots:"tiktok youtube monetisation reseaux sociaux compte createur"}
+];
+function norm(s){return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")}
+var tq=document.getElementById("tq"),ts=document.getElementById("tsend"),tg=document.getElementById("tgrid"),tn=document.getElementById("tnone");
+function tRender(){
+  var v=tq.value.trim(),q=norm(v),n=0;tg.innerHTML="";
+  TUTOS.forEach(function(t){
+    if(q&&norm(t.titre+" "+t.desc+" "+t.mots).indexOf(q)<0)return;
+    n++;var c=document.createElement("article");c.className="card";
+    c.innerHTML='<span class="tag">Tuto complet</span><h3></h3><p></p><a class="btn" target="_blank" rel="noopener">Demander ce tuto</a>';
+    c.querySelector("h3").textContent=t.titre;c.querySelector("p").textContent=t.desc;
+    c.querySelector(".btn").href=wa("Bonjour, je voudrais le tuto complet « "+t.titre+" ». Quel est le prix ?");
+    tg.appendChild(c);
+  });
+  tn.hidden=n>0||!q;
+  ts.href=wa(v?"Bonjour, je voudrais un tuto sur : « "+v+" ». Quel est le prix ?":"Bonjour, quels tutos complets proposez-vous ?");
+}
+tq.addEventListener("input",tRender);tRender();
 </script>
 </body>
 </html>
