@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KGB ACADEMY – Formations en ligne</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f8f7;--surface:#ffffff;--ink:#14262b;--muted:#53686c;--line:#dbe4e1;
+  --accent:#0e7a5f;--accent-ink:#ffffff;--sun:#f2a33a;--sun-ink:#3d2600;
+  --head:"Bricolage Grotesque","Trebuchet MS",sans-serif;--body:"Figtree",system-ui,sans-serif;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#0f1a1d;--surface:#16252a;--ink:#e8f0ee;--muted:#9db3ae;--line:#263a3f;--accent:#35c79a;--accent-ink:#06231b;--sun:#f2a33a;--sun-ink:#3d2600}
+}
+:root[data-theme="dark"]{--bg:#0f1a1d;--surface:#16252a;--ink:#e8f0ee;--muted:#9db3ae;--line:#263a3f;--accent:#35c79a;--accent-ink:#06231b;--sun:#f2a33a;--sun-ink:#3d2600}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;padding-bottom:84px}
+.wrap{max-width:720px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:var(--head);line-height:1.12;margin:0}
+a{color:inherit}
+header{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+.brand{font-family:var(--head);font-weight:800;font-size:20px;text-decoration:none;display:inline-flex;align-items:center;gap:10px}
+.brand svg{height:46px;width:auto;flex:none}
+.brand span{color:var(--accent)}
+.top-link{font-weight:600;font-size:15px;color:var(--accent);text-decoration:none}
+.hero{padding:34px 0 40px;border-bottom:1px solid var(--line)}
+.hero-logo{height:112px;width:auto;display:block;margin-bottom:20px}
+.foot-logo{height:34px;width:auto;display:block;margin-bottom:10px}
+.lbl{display:block;font-weight:600;margin-bottom:8px}
+.inp{width:100%;font:inherit;padding:13px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);margin-bottom:14px}
+.inp:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.hero h1{font-size:clamp(34px,9vw,52px);font-weight:800;letter-spacing:-.02em;max-width:14ch}
+.hero p{color:var(--muted);max-width:34ch;margin:16px 0 26px;font-size:18px}
+.btn{display:inline-block;background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:16px;padding:14px 22px;border-radius:10px;text-decoration:none;border:0;cursor:pointer;font-family:var(--body)}
+.btn:focus-visible,.chip:focus-visible,summary:focus-visible,.fab:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.btn.alt{background:transparent;color:var(--ink);border:1.5px solid var(--line);margin-left:8px}
+section{padding:40px 0}
+h2{font-size:28px;font-weight:800;letter-spacing:-.01em}
+.sub{color:var(--muted);margin:8px 0 22px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.chip{font:600 15px var(--body);padding:8px 16px;border-radius:99px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.grid{display:grid;gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+.tag{display:inline-block;font-size:13px;font-weight:600;padding:3px 10px;border-radius:6px;background:var(--sun);color:var(--sun-ink)}
+.card h3{font-size:21px;font-weight:600;margin:12px 0 8px}
+.card p{margin:0 0 14px;color:var(--muted);font-size:16px}
+.card ul{margin:0 0 18px;padding-left:18px;font-size:15px}
+.buy{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.price{font-family:var(--head);font-weight:800;font-size:24px}
+.price small{font-size:14px;font-weight:600;color:var(--muted)}
+.steps{counter-reset:s;list-style:none;margin:20px 0 0;padding:0;display:grid;gap:14px}
+.steps li{counter-increment:s;display:flex;gap:14px;align-items:flex-start}
+.steps li::before{content:counter(s);flex:none;width:34px;height:34px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font:800 16px var(--head);display:grid;place-items:center}
+.steps b{display:block}
+.pay{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-top:22px;font-weight:600}
+.pay span{color:var(--muted);font-weight:400;display:block;font-size:15px;margin-top:4px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px}
+summary{font-weight:600;cursor:pointer}
+details p{margin:10px 0 0;color:var(--muted)}
+footer{padding:28px 0 40px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+.fab{position:fixed;left:16px;right:16px;bottom:calc(14px + env(safe-area-inset-bottom,0px));max-width:688px;margin:0 auto;text-align:center;background:var(--accent);color:var(--accent-ink);font-weight:600;padding:15px;border-radius:12px;text-decoration:none;box-shadow:0 6px 18px rgba(0,0,0,.22);z-index:5}
+@media (min-width:640px){.grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="brand" href="#" aria-label="KGB ACADEMY"><svg id="logo" viewBox="96 36 408 488" role="img" aria-hidden="true"><path d="M300 40 L500 100 V270 C500 400 400 480 300 520 C200 480 100 400 100 270 V100 Z" fill="#0E7A5F"/><path d="M300 40 L500 100 V270 C500 400 400 480 300 520 C200 480 100 400 100 270 V100 Z" fill="none" stroke="#F2A33A" stroke-width="7" transform="translate(300 280) scale(.9) translate(-300 -280)"/><g fill="#F2A33A"><polygon points="300,112 404,154 300,196 196,154"/><path d="M242 182 V208 C242 232 358 232 358 208 V182 L300 206 Z"/><rect x="398" y="156" width="6" height="46" rx="3"/><circle cx="401" cy="208" r="8"/></g><g fill="none" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"><path d="M170 270 V400 M170 336 L232 270 M190 318 L236 400"/><path d="M346 296 C330 268 272 266 272 335 C272 404 330 404 346 376 V342 H312"/><path d="M370 270 V400 M370 270 H398 C430 270 430 334 398 334 H370 M370 334 H404 C440 334 440 400 404 400 H370"/></g></svg>KGB <span>ACADEMY</span></a>
+    <a class="top-link" href="#catalogue">Formations</a>
+  </header>
+
+  <div class="hero">
+    <div id="heroLogo"></div>
+    <h1>Apprends un savoir-faire utile, depuis ton téléphone.</h1>
+    <p>Des guides PDF pour apprendre Linux, le terminal et les bases de la cybersécurité, à 500 FCFA seulement. Tu commandes sur WhatsApp en un clic.</p>
+    <a class="btn" href="#catalogue">Voir les formations</a>
+    <a class="btn alt" id="hello" href="#">Poser une question</a>
+  </div>
+
+  <section id="catalogue">
+    <h2>Nos guides PDF</h2>
+    <p class="sub">Choisis ton guide, puis appuie sur « Commander ».</p>
+    <div class="chips" id="chips"></div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="applications">
+    <h2>Applications</h2>
+    <p class="sub">Tu cherches une application ? Dis-moi laquelle et je te réponds sur WhatsApp. Prix : 500 ou 1 000 FCFA selon l’application.</p>
+    <div class="card">
+      <label for="appname" class="lbl">Nom de l’application</label>
+      <input id="appname" class="inp" type="text" placeholder="Écris le nom ici" autocomplete="off">
+      <a class="btn" id="appbtn" target="_blank" rel="noopener">Envoyer ma demande</a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Comment ça marche</h2>
+    <ol class="steps">
+      <li><div><b>Choisis ta formation</b>Appuie sur « Commander » : WhatsApp s’ouvre avec le message déjà écrit.</div></li>
+      <li><div><b>Envoie le message</b>Nous te répondons avec les détails et le numéro pour le paiement.</div></li>
+      <li><div><b>Paie et reçois ton accès</b>Dès la confirmation, tu reçois la formation sur WhatsApp.</div></li>
+    </ol>
+    <div class="pay">Paiement par Orange Money, MTN Money ou Wave<span>Les moyens de paiement exacts te sont confirmés sur WhatsApp.</span></div>
+  </section>
+
+  <section>
+    <h2>Questions fréquentes</h2>
+    <p class="sub"></p>
+    <details><summary>Comment je reçois mon guide ?</summary><p>Après le paiement, tu reçois ton PDF directement sur WhatsApp.</p></details>
+    <details><summary>Qu’est-ce qu’il me faut pour suivre ?</summary><p>Un téléphone Android et l’application gratuite Termux. Aucun ordinateur n’est nécessaire.</p></details>
+    <details><summary>Et si j’ai un problème ?</summary><p>Écris-nous sur WhatsApp : nous répondons à tes questions avant et après l’achat.</p></details>
+  </section>
+
+  <footer><div id="footLogo"></div>© KGB ACADEMY · Côte d’Ivoire</footer>
+</div>
+
+<a class="fab" id="fab" href="#">Discuter sur WhatsApp</a>
+
+<script>
+// ——— À MODIFIER ———
+var WHATSAPP = "2250594488363"; // ton numéro, sans + ni espaces (indicatif 225 + numéro)
+var FORMATIONS = [
+  {titre:"Comprendre Linux et Kali : le guide pour débutant", format:"PDF", prix:500, desc:"Apprends le terminal, les commandes et les bases de Kali, sur ton téléphone avec Termux.", points:["15 chapitres avec exemples à essayer","Exercices corrigés et plan sur 4 semaines"]},
+  {titre:"Maîtriser le terminal Linux", format:"PDF", prix:500, desc:"Les commandes essentielles de Linux, expliquées simplement pour Termux et Kali.", points:["Les commandes essentielles, par thème","Plan sur 4 semaines et glossaire"]}
+  
+  
+];
+// ————————————————
+function wa(msg){return "https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg)}
+function fmt(n){return n.toLocaleString("fr-FR")}
+var current="Tout";
+function render(){
+  var formats=["Tout"];
+  FORMATIONS.forEach(function(f){if(formats.indexOf(f.format)<0)formats.push(f.format)});
+  var chips=document.getElementById("chips");chips.innerHTML="";chips.style.display=formats.length>2?"flex":"none";
+  formats.forEach(function(f){
+    var b=document.createElement("button");b.className="chip";b.textContent=f;
+    b.setAttribute("aria-pressed",String(f===current));
+    b.onclick=function(){current=f;render()};chips.appendChild(b);
+  });
+  var grid=document.getElementById("grid");grid.innerHTML="";
+  FORMATIONS.filter(function(f){return current==="Tout"||f.format===current}).forEach(function(f){
+    var c=document.createElement("article");c.className="card";
+    var msg="Bonjour, je veux commander la formation « "+f.titre+" » à "+fmt(f.prix)+" FCFA. Comment procéder ?";
+    c.innerHTML='<span class="tag"></span><h3></h3><p></p><ul></ul><div class="buy"><div class="price"></div><a class="btn" target="_blank" rel="noopener">Commander</a></div>';
+    c.querySelector(".tag").textContent=f.format;
+    c.querySelector("h3").textContent=f.titre;
+    c.querySelector("p").textContent=f.desc;
+    f.points.forEach(function(p){var li=document.createElement("li");li.textContent=p;c.querySelector("ul").appendChild(li)});
+    c.querySelector(".price").innerHTML=fmt(f.prix)+' <small>FCFA</small>';
+    c.querySelector(".btn").href=wa(msg);
+    grid.appendChild(c);
+  });
+}
+render();
+var hi="Bonjour, j’ai une question sur vos formations.";
+document.getElementById("hello").href=wa(hi);
+document.getElementById("fab").href=wa(hi);
+try{
+  var ic=document.createElement("link");ic.rel="icon";ic.type="image/svg+xml";
+  ic.href="data:image/svg+xml,"+encodeURIComponent(new XMLSerializer().serializeToString(document.getElementById("logo")));
+  document.head.appendChild(ic);
+}catch(e){}
+[["heroLogo","hero-logo"],["footLogo","foot-logo"]].forEach(function(p){var n=document.getElementById("logo").cloneNode(true);n.removeAttribute("id");n.setAttribute("class",p[1]);document.getElementById(p[0]).appendChild(n)});
+var ai=document.getElementById("appname"),ab=document.getElementById("appbtn");
+function upd(){var n=ai.value.trim();ab.href=wa("Bonjour, je voudrais demander une application"+(n?" : « "+n+" »":"")+". Quel est le prix ?")}
+ai.addEventListener("input",upd);upd();
+</script>
+</body>
+</html>
