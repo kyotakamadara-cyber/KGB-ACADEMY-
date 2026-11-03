@@ -68,9 +68,6 @@ footer{padding:28px 0 40px;border-top:1px solid var(--line);color:var(--muted);f
 .fab{position:fixed;left:16px;right:16px;bottom:calc(14px + env(safe-area-inset-bottom,0px));max-width:688px;margin:0 auto;text-align:center;background:var(--accent);color:var(--accent-ink);font-weight:600;padding:15px;border-radius:12px;text-decoration:none;box-shadow:0 6px 18px rgba(0,0,0,.22);z-index:5}
 @media (min-width:640px){.grid{grid-template-columns:1fr 1fr}}
 </style>
-<link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#0E7A5F">
-<link rel="apple-touch-icon" href="icon-192.png">
 </head>
 <body>
 <div class="wrap">
@@ -166,7 +163,9 @@ var FORMATIONS = [
   {titre:"Canva : affiches et miniatures qui attirent", format:"Vidéo", prix:200, desc:"Crée des visuels pro pour tes réseaux et ta boutique.", points:["Modèles, textes et couleurs","Exporter pour WhatsApp et TikTok"]},
   {titre:"La Lune des Mille Cerisiers", format:"Manga", prix:200, desc:"Un roman fantastique et romantique illustré dans le style manga : Aiko, Reiji et Souta.", points:["62 pages en 5 parties","Couverture et illustrations en couleurs"]},
   {id:"ombres",titre:"Manga : l’École des Ombres", format:"Manga", prix:100, desc:"Une histoire originale d’action et de mystère dans une école pas comme les autres.", points:["Histoire originale complète","Lecture facile sur téléphone"]},
-  {id:"gamer",titre:"Manga : Le Dernier Gamer", format:"Manga", prix:100, desc:"Un jeune joueur découvre un jeu vidéo qui change sa vie. Humour et aventure.", points:["Histoire originale complète","Lecture facile sur téléphone"]}
+  {id:"gamer",titre:"Manga : Le Dernier Gamer", format:"Manga", prix:100, desc:"Un jeune joueur découvre un jeu vidéo qui change sa vie. Humour et aventure.", points:["Histoire originale complète","Lecture facile sur téléphone"]},
+  {titre:"Tout comprendre sur le Soleil", format:"Vidéo", prix:200, desc:"Une vidéo en HD pour découvrir comment fonctionne notre étoile, simplement.", points:["Explications claires, qualité 720p HD","À regarder sur téléphone, quand tu veux"]},
+  {titre:"La théorie du Big Bang", format:"Vidéo", prix:200, desc:"Comprendre l’origine de l’univers, étape par étape, en vidéo HD.", points:["Explications claires, qualité 720p HD","À regarder sur téléphone, quand tu veux"]}
   
   
 ];
@@ -184,7 +183,7 @@ async function unlock(f,code,st){
     buf=await crypto.subtle.decrypt({name:"AES-GCM",iv:b64(F.i)},k,b64(F.d));
   }catch(e){st.textContent="Code incorrect. Vérifie le code reçu sur WhatsApp.";return}
   var dl=null;try{dl=window.claude&&await claude.use("downloads")}catch(e){}
-  if(!dl){try{var u=URL.createObjectURL(new Blob([buf],{type:"application/pdf"})),a=document.createElement("a");a.href=u;a.download=F.n;document.body.appendChild(a);a.click();a.remove();st.textContent="Code valide. Téléchargement lancé.";}catch(e){st.textContent="Téléchargement impossible. Écris-nous sur WhatsApp."}return}
+  if(!dl){st.textContent="Téléchargement indisponible ici. Écris-nous sur WhatsApp, nous t’envoyons le fichier.";return}
   try{await dl.save({filename:F.n,data:buf});st.textContent="Code valide. Merci pour ta confiance !"}
   catch(e){st.textContent=(e&&e.code==="declined")?"Téléchargement annulé.":"Téléchargement impossible. Écris-nous sur WhatsApp."}
 }
@@ -253,6 +252,5 @@ function tRender(){
 }
 tq.addEventListener("input",tRender);tRender();
 </script>
-<script>if("serviceWorker" in navigator)addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});</script>
 </body>
 </html>
